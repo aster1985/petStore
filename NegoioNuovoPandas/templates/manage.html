@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestione del Negozio</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .product-img {
+            max-width: 200px;
+            max-height: 300px;
+            width: auto;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4">Gestione del Negozio</h1>
+        <form action="/add_product" method="post" class="mb-4">
+            <div class="form-row">
+                <div class="col">
+                    <input type="text" name="name" class="form-control" placeholder="Nome del prodotto" required>
+                </div>
+                <div class="col">
+                    <input type="text" name="category" class="form-control" placeholder="Categoria" required>
+                </div>
+                <div class="col">
+                    <input type="number" name="quantity" class="form-control" placeholder="Quantità" required>
+                </div>
+                <div class="col">
+                    <input type="number" name="price" class="form-control" placeholder="Prezzo" required>
+                </div>
+                <div class="col">
+                    <input type="text" name="image_url" class="form-control" placeholder="URL dell'immagine">
+                </div>
+                <div class="col">
+                    <button type="submit" class="btn btn-primary">Aggiungi Prodotto</button>
+                </div>
+            </div>
+        </form>
+        <h2>Prodotti</h2>
+        <div class="row">
+            {% for product in products %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="{{ product.image_url }}" class="card-img-top product-img" alt="{{ product.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">Categoria: {{ product.category }}</p>
+                        <p class="card-text">Quantità: {{ product.quantity }}</p>
+                        <p class="card-text">Prezzo: {{ product.price }}</p>
+                        <a href="/delete_product/{{ product.id }}" class="btn btn-danger">Elimina</a>
+                        <form action="/update_product/{{ product.id }}" method="post" class="mt-2">
+                            <input type="text" name="name" class="form-control mb-2" value="{{ product.name }}" required>
+                            <input type="text" name="category" class="form-control mb-2" value="{{ product.category }}" required>
+                            <input type="number" name="quantity" class="form-control mb-2" value="{{ product.quantity }}" required>
+                            <input type="number" name="price" class="form-control mb-2" value="{{ product.price }}" required>
+                            <input type="text" name="image_url" class="form-control mb-2" value="{{ product.image_url }}">
+                            <button type="submit" class="btn btn-warning">Aggiorna</button>
+                        </form>
+                        <a href="/add_to_cart/{{ product.id }}" class="btn btn-success mt-2">Aggiungi al Carrello</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <a href="/cart" class="btn btn-info">Vai al Carrello</a>
+        <a href="/download_csv" class="btn btn-secondary">Scarica CSV</a>
+        <a href="/statistics" class="btn btn-secondary">Visualizza Statistiche</a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

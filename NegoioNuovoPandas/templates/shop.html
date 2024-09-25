@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Negozio di Animali</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .product-img {
+            max-width: 200px;
+            max-height: 300px;
+            width: auto;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4">Negozio di Animali</h1>
+        <div class="row">
+            {% for product in products %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="{{ product.image_url }}" class="card-img-top product-img" alt="{{ product.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">Categoria: {{ product.category }}</p>
+                        <p class="card-text">Quantità: {{ product.quantity }}</p>
+                        <p class="card-text">Prezzo: {{ product.price }}</p>
+                        <form action="/add_to_cart/{{ product.id }}" method="post">
+                            <div class="form-row">
+                                <div class="col">
+                                    <input type="number" name="quantity" class="form-control" value="1" min="1" required>
+                                </div>
+                                <div class="col">
+                                    <button type="submit" class="btn btn-success">Aggiungi al Carrello</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <a href="/cart" class="btn btn-info">Vai al Carrello</a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

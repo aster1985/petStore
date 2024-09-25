@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrello</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .product-img {
+            max-width: 100px;
+            max-height: 150px;
+            width: auto;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4">Carrello</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Immagine</th>
+                    <th>Nome</th>
+                    <th>Quantità</th>
+                    <th>Prezzo Unitario</th>
+                    <th>Prezzo Totale</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart_items %}
+                <tr>
+                    <td><img src="{{ item.image_url }}" class="product-img" alt="{{ item.name }}"></td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.price }}</td>
+                    <td>{{ item.total_price }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <h3>Totale: {{ total_price }}</h3>
+        <a href="/checkout" class="btn btn-success">Procedi al Pagamento</a>
+        <a href="/shop" class="btn btn-primary">Continua lo Shopping</a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

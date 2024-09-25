@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistiche</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4">Statistiche</h1>
+        <h2>Quantità di Prodotti per Categoria</h2>
+        <img src="{{ url_for('static', filename='stock_stats.png') }}" class="img-fluid" alt="Quantità di Prodotti per Categoria">
+        <h2>Prezzo Totale dei Prodotti per Categoria</h2>
+        <img src="{{ url_for('static', filename='sales_stats.png') }}" class="img-fluid" alt="Prezzo Totale dei Prodotti per Categoria">
+        <a href="/manage" class="btn btn-primary mt-4">Torna alla Gestione del Negozio</a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
